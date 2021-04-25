@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -188,15 +191,23 @@ class Diagrams extends StatelessWidget {
               ),
               Divider(),
               ListTile(
-                title: Text('Lubrication System Diagram')
+                title: Text('Lubrication System Diagram'),
+                onTap: () {_navigateToLubeSystem(context);}
               ),
               Divider(),
               ListTile(
-                title: Text('Electrical System Diagram')
+                title: Text('Electrical System Diagrams'),
+                onTap: () {_navigateToElectricSystem(context);}
               ),
               Divider(),
               ListTile(
-                title: Text('Wire, Cable, & Hose Routing')
+                title: Text('Wire, Cable, & Hose Routing'),
+                onTap: () {_navigateToWCHRouting(context);}
+              ),
+              Divider(),
+              ListTile(
+                  title: Text('Colored Wiring Diagram \'98+ Models'),
+                  onTap: () {_navigateToColoredWiring(context);}
               ),
               Divider(),
             ]
@@ -206,11 +217,21 @@ class Diagrams extends StatelessWidget {
   void _navigateToSpecs(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => MachineSpecs()));
   }
-
   void _navigateToExplodedView(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => ExplodedChassis()));
   }
-
+  void _navigateToLubeSystem(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => LubeSystem()));
+  }
+  void _navigateToElectricSystem(BuildContext context){
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ElectricSystem()));
+  }
+  void _navigateToWCHRouting(BuildContext context){
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => WCHRouting()));
+  }
+  void _navigateToColoredWiring(BuildContext context){
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ColoredWiring()));
+  }
 }
 
 class MachineSpecs extends StatelessWidget {
@@ -730,20 +751,19 @@ class ExplodedChassis extends StatefulWidget {
 }
 
 class _ExplodedChassisState extends State<ExplodedChassis> {
-  bool _isLoading = true;
+  static final asset ='assets/ExplodedViews.pdf';
   PDFDocument document;
-  static const asset ='assets/ExplodedViews.pdf';
+  bool _isLoading = true;
+
+  loadDocument() async {
+    document = await PDFDocument.fromAsset(asset);
+    setState(() => _isLoading = false);
+  }
 
   @override
   void initState() {
     super.initState();
     loadDocument();
-  }
-
-  loadDocument() async {
-    setState(() => _isLoading = true);
-    document = await PDFDocument.fromAsset(asset);
-    setState(() => _isLoading = false);
   }
 
   @override
@@ -760,6 +780,134 @@ class _ExplodedChassisState extends State<ExplodedChassis> {
   }
 
 
+}
+
+class LubeSystem extends StatefulWidget {
+  @override
+  _LubeSystemState createState() => _LubeSystemState();
+}
+
+class _LubeSystemState extends State<LubeSystem>{
+  static final asset ='assets/LubeSystem.pdf';
+  PDFDocument document;
+  bool _isLoading = true;
+
+  loadDocument() async {
+    document = await PDFDocument.fromAsset(asset);
+    setState(() => _isLoading = false);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadDocument();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Lubrication System Diagram'),
+      ),
+      body: Center(child:
+      _isLoading ? Center(child: CircularProgressIndicator())
+          : PDFViewer(
+        document: document, scrollDirection: Axis.vertical, lazyLoad: false,)
+      ),
+    );
+  }
+}
+
+class ElectricSystem extends StatefulWidget {
+  @override
+  _ElectricSystemState createState() => _ElectricSystemState();
+}
+
+class _ElectricSystemState extends State<ElectricSystem> {
+  static final asset ='assets/ElectricalSystem.pdf';
+  PDFDocument document;
+  bool _isLoading = true;
+
+  loadDocument() async {
+    document = await PDFDocument.fromAsset(asset);
+    setState(() => _isLoading = false);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadDocument();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Electrical System Diagrams'),
+      ),
+      body: Center(child:
+      _isLoading ? Center(child: CircularProgressIndicator())
+          : PDFViewer(
+        document: document, scrollDirection: Axis.vertical, lazyLoad: false,) //Large file
+      ),
+    );
+  }
+}
+
+class WCHRouting extends StatefulWidget {
+  @override
+  _WCHRoutingState createState() => _WCHRoutingState();
+}
+
+class _WCHRoutingState extends State<WCHRouting> {
+  static final asset ='assets/WCHRouting.pdf';
+  PDFDocument document;
+  bool _isLoading = true;
+
+  loadDocument() async {
+    document = await PDFDocument.fromAsset(asset);
+    setState(() => _isLoading = false);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadDocument();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Wire, Cable, & Hose Routing'),
+      ),
+      body: Center(child:
+      _isLoading ? Center(child: CircularProgressIndicator())
+          : PDFViewer(
+        document: document, scrollDirection: Axis.vertical, lazyLoad: false,) //Large file
+      ),
+    );
+  }
+}
+
+class ColoredWiring extends StatelessWidget {
+  final _asset = 'assets/ColoredWiringDiagram.jpg';
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+            title: Text('Colored Wiring Diagram')
+        ),
+        body: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Image.asset(_asset),
+               Text('Thanks to DRRiders user nmerrill for making this color coded diagram')
+              ],
+            )
+        )
+    );
+  }
 }
 
 class Maintenance extends StatelessWidget {
