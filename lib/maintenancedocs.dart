@@ -40,15 +40,18 @@ class Maintenance extends StatelessWidget {
           ListTile(
             title: Text('Carburetor Adjustment & Specs'),
             subtitle: Text('BST Magic'),
+            onTap: () {_navigateToBSTAdjustment(context);},
           ),
           Divider(),
           ListTile(
-              title: Text('Service Data & Wear Limits')
+              title: Text('Engine Data & Wear Limits'),
+            onTap: () {_navigateToServiceData(context);},
           ),
           Divider(),
           ListTile(
-            title: Text('OEM Parts & Bearing List'),
+            title: Text('Consumable Parts & Bearing List'),
             subtitle: Text('Cross-reference guide as well'),
+            onTap: () {_navigateToCrossRef(context);}
           ),
           Divider(),
         ]
@@ -69,6 +72,15 @@ class Maintenance extends StatelessWidget {
   }
   void _navigateToLubricationPoints(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => LubePoints()));
+  }
+  void _navigateToBSTAdjustment(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => BSTAdjustment()));
+  }
+  void _navigateToServiceData(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ServiceData()));
+  }
+  void _navigateToCrossRef(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => CrossRef()));
   }
 }
 
@@ -116,7 +128,7 @@ class TuneUpSpecs extends StatelessWidget {
         appBar: AppBar(
           title: Text('Tune Up Specs'),
         ),
-        body:  SingleChildScrollView(
+        body:  InteractiveViewer(child: SingleChildScrollView(
           child:Column(
             crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -322,7 +334,7 @@ class TuneUpSpecs extends StatelessWidget {
               ]
           )
         )
-    );
+        ));
   }
 }
 
@@ -406,13 +418,446 @@ class LubePoints extends StatelessWidget {
         appBar: AppBar(
             title: Text('Lubrication Points')
         ),
-        body: SingleChildScrollView(
+        body: InteractiveViewer(child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
                 Image.asset(_asset),
               ],
             )
         )
+    ));
+  }
+}
+
+class BSTAdjustment extends StatelessWidget {
+  final _asset = ['assets/BSTExploded.png', 'assets/BSTSpecs.png', 'assets/PilotPlugRemoval.png'];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+            title: Text('Carburetor Adjustment & Specs')
+        ),
+        body: InteractiveViewer( child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Exploded View', textScaleFactor: 1.5, textAlign: TextAlign.left,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Image.asset(_asset[0]),
+                Divider(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Factory Tune', textScaleFactor: 1.5, textAlign: TextAlign.left,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Image.asset(_asset[1]),
+                Divider(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Pilot Adjustment', textScaleFactor: 1.5, textAlign: TextAlign.left,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Image.asset(_asset[2]),
+                Text(' - Lightly seat pilot screw by turning it clockwise. Do not overtighten!\n'
+                    ' - Back the screw out 1.5 turns\n'
+                    ' - Ride the machine for 15-30 minutes so it reaches full operating temp\n'
+                    ' - With idle at 1500 RPM slowly turn pilot screw clockwise until the idle stumbles and becomes erratic\n'
+                    ' - Now slowly turn the screw counter-clockwise until the idle smoothes out, at this point turn the screw 1/16 to 3/16 further\n'
+                    ' - Pilot circuit is now set', textScaleFactor: 1, textAlign: TextAlign.left),
+                Divider(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Needle Adjustment', textScaleFactor: 1.5, textAlign: TextAlign.left,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Padding(
+                    padding: const EdgeInsets.only(left: 4.0, bottom: 8.0 ),
+                    child: Text('There are multiple ways to tune the BST-40 all of which are supported by dyno charts. This is just one of them (and the cheapest)'
+                    ' so please read up and decide on the path you will take.\n\n'
+                    'The USA E-03/33 needle is a single position needle that you cannot adjust without shimming. The adjustable 6F19 needle used in the rest of the world is available from motolab in the "external links" section.\n'
+                    'Shims for this purpose are stainless or brass flat washers for M3-M4 screws and are typically around .5mm in thickness. You want to place the shim below the needle clip (part# 4 in the diagram), but above the '
+                    'white plastic spacer (part# 5). Inspect the white spacer for wear marks where it contacts the shelf inside the slide. Flip or replace the spacer as needed to prevent leaning out of the jetting. Typically shimming the needle'
+                    '0.5-1mm is all that is required depending on altitude.'))
+              ],
+            )
+        )
+    ));
+  }
+}
+
+class ServiceData extends StatefulWidget {
+  @override
+  _ServiceDataState createState() => _ServiceDataState();
+}
+
+class _ServiceDataState extends State<ServiceData> {
+  static final asset ='assets/WearLimits.pdf';
+  PDFDocument document;
+  bool _isLoading = true;
+
+  loadDocument() async {
+    document = await PDFDocument.fromAsset(asset);
+    setState(() => _isLoading = false);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadDocument();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Engine Data & Wear Limits'),
+      ),
+      body: Center(child:
+      _isLoading ? Center(child: CircularProgressIndicator())
+          : PDFViewer(
+        document: document, scrollDirection: Axis.vertical, lazyLoad: false,)
+      ),
     );
+  }
+}
+
+class CrossRef extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+            title: Text('Parts By Job')
+        ),
+        body: InteractiveViewer( child: SingleChildScrollView(
+            child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Oil Change', textScaleFactor: 1.25, textAlign: TextAlign.left,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Table(
+                    border: TableBorder.all(color: Colors.white24, width: 1.0),
+                    children: [
+                      TableRow(children: <Widget> [
+                      TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Oil Filter', textAlign: TextAlign.left))),
+                      TableCell(child: Align(alignment: Alignment.centerRight, child: Text('16510-37450', textAlign: TextAlign.right)))
+                        ]
+                      ),
+                      TableRow(children: <Widget> [
+                        TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Oil Filter Sealing O-Ring', textAlign: TextAlign.left))),
+                        TableCell(child: Align(alignment: Alignment.centerRight, child: Text('09280-15007', textAlign: TextAlign.right)))
+                      ]
+                      ),
+                      TableRow(children: <Widget> [
+                        TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Oil Filter Cover O-Ring', textAlign: TextAlign.left))),
+                        TableCell(child: Align(alignment: Alignment.centerRight, child: Text('09280-72001', textAlign: TextAlign.right)))
+                      ]
+                      ),
+                      TableRow(children: <Widget> [
+                        TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Drain Bolt Sealing Washer', textAlign: TextAlign.left))),
+                        TableCell(child: Align(alignment: Alignment.centerRight, child: Text('09168-14004', textAlign: TextAlign.right)))
+                      ]
+                      ),
+                    ],
+                  ),
+                  Divider(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('BST-40 Repair', textScaleFactor: 1.25, textAlign: TextAlign.left,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Table(
+                      border: TableBorder.all(color: Colors.white24, width: 1.0),
+                      children: [
+                        TableRow(children: <Widget> [
+                          TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Float Bowl Gasket', textAlign: TextAlign.left))),
+                          TableCell(child: Align(alignment: Alignment.centerRight, child: Text('13258-44B00', textAlign: TextAlign.right)))
+                        ]
+                        ),
+                        TableRow(children: <Widget> [
+                          TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Diaphragm Cover Vacuum Port O-Ring', textAlign: TextAlign.left))),
+                          TableCell(child: Align(alignment: Alignment.centerRight, child: Text('13278-02340', textAlign: TextAlign.right)))
+                        ]
+                        ),
+                        TableRow(children: <Widget> [
+                          TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Pilot Screw O-Ring', textAlign: TextAlign.left))),
+                          TableCell(child: Align(alignment: Alignment.centerRight, child: Text('13295-29900', textAlign: TextAlign.right)))
+                        ]
+                        ),
+                        TableRow(children: <Widget> [
+                          TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Float Assembly O-Ring #1', textAlign: TextAlign.left))),
+                          TableCell(child: Align(alignment: Alignment.centerRight, child: Text('13374-46710', textAlign: TextAlign.right)))
+                        ]
+                        ),
+                        TableRow(children: <Widget> [
+                          TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Float Assembly O-Ring #2', textAlign: TextAlign.left))),
+                          TableCell(child: Align(alignment: Alignment.centerRight, child: Text('13374-35C00', textAlign: TextAlign.right)))
+                        ]
+                        ),
+                      ]
+                  ),
+                  Divider(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Clutch/NSU Repair', textScaleFactor: 1.25, textAlign: TextAlign.left,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Table(
+                      border: TableBorder.all(color: Colors.white24, width: 1.0),
+                      children: [
+                        TableRow(children: <Widget> [
+                          TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Clutch Hub Bending Washer', textAlign: TextAlign.left))),
+                          TableCell(child: Align(alignment: Alignment.centerRight, child: Text('09169-20005', textAlign: TextAlign.right)))
+                        ]
+                        ),
+                        TableRow(children: <Widget> [
+                          TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Clutch Cover Gasket', textAlign: TextAlign.left))),
+                          TableCell(child: Align(alignment: Alignment.centerRight, child: Text('11482-32E00', textAlign: TextAlign.right)))
+                        ]
+                        ),
+                        TableRow(children: <Widget> [
+                          TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Oil Cooler Hose O-Ring', textAlign: TextAlign.left))),
+                          TableCell(child: Align(alignment: Alignment.centerRight, child: Text('09280-12012', textAlign: TextAlign.right)))
+                        ]
+                        ),
+                        TableRow(children: <Widget> [
+                          TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Oil Pump Idler Gear\n(Inspect and replace if worn)', textAlign: TextAlign.left))),
+                          TableCell(child: Align(alignment: Alignment.centerRight, child: Text('16321-32E00', textAlign: TextAlign.right)))
+                        ]
+                        ),
+                        TableRow(children: <Widget> [
+                          TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Float Assembly O-Ring #2', textAlign: TextAlign.left))),
+                          TableCell(child: Align(alignment: Alignment.centerRight, child: Text('13374-35C00', textAlign: TextAlign.right)))
+                        ]
+                        ),
+                        TableRow(children: <Widget> [
+                          TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Oil Filter', textAlign: TextAlign.left))),
+                          TableCell(child: Align(alignment: Alignment.centerRight, child: Text('16510-37450', textAlign: TextAlign.right)))
+                        ]
+                        ),
+                        TableRow(children: <Widget> [
+                          TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Oil Filter Sealing O-Ring', textAlign: TextAlign.left))),
+                          TableCell(child: Align(alignment: Alignment.centerRight, child: Text('09280-15007', textAlign: TextAlign.right)))
+                        ]
+                        ),
+                        TableRow(children: <Widget> [
+                          TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Oil Filter Cover O-Ring', textAlign: TextAlign.left))),
+                          TableCell(child: Align(alignment: Alignment.centerRight, child: Text('09280-72001', textAlign: TextAlign.right)))
+                        ]
+                        ),
+                      ]
+                  ),
+                  Divider(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Cam Chain Tensioner Leak', textScaleFactor: 1.25, textAlign: TextAlign.left,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Table(
+                    border: TableBorder.all(color: Colors.white24, width: 1.0),
+                    children: [
+                      TableRow(children: <Widget> [
+                        TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('CCT Gasket', textAlign: TextAlign.left))),
+                        TableCell(child: Align(alignment: Alignment.centerRight, child: Text('12837-24A10', textAlign: TextAlign.right)))
+                      ]
+                      ),
+                      TableRow(children: <Widget> [
+                        TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Exhaust Port Gasket\n(Optional)', textAlign: TextAlign.left))),
+                        TableCell(child: Align(alignment: Alignment.centerRight, child: Text('14181-22D01', textAlign: TextAlign.right)))
+                      ]
+                      ),
+                    ],
+                  ),
+                  Divider(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Base Gasket Replacement', textScaleFactor: 1.25, textAlign: TextAlign.left,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Table(
+                    border: TableBorder.all(color: Colors.white24, width: 1.0),
+                    children: [
+                      TableRow(children: <Widget> [
+                        TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('CCT Gasket', textAlign: TextAlign.left))),
+                        TableCell(child: Align(alignment: Alignment.centerRight, child: Text('12837-24A10', textAlign: TextAlign.right)))
+                      ]
+                      ),
+                      TableRow(children: <Widget> [
+                        TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Exhaust Port Gasket', textAlign: TextAlign.left))),
+                        TableCell(child: Align(alignment: Alignment.centerRight, child: Text('14181-22D01', textAlign: TextAlign.right)))
+                      ]
+                      ),
+                      TableRow(children: <Widget> [
+                        TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Valve Cover Inspection O-Ring (x2)', textAlign: TextAlign.left))),
+                        TableCell(child: Align(alignment: Alignment.centerRight, child: Text('11177-44B01', textAlign: TextAlign.right)))
+                      ]
+                      ),
+                      TableRow(children: <Widget> [
+                        TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Crank Bolt Access O-Ring', textAlign: TextAlign.left))),
+                        TableCell(child: Align(alignment: Alignment.centerRight, child: Text('09280-33004', textAlign: TextAlign.right)))
+                      ]
+                      ),
+                      TableRow(children: <Widget> [
+                        TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Timing Port Sealing Washer', textAlign: TextAlign.left))),
+                        TableCell(child: Align(alignment: Alignment.centerRight, child: Text('09168-14004', textAlign: TextAlign.right)))
+                      ]
+                      ),
+                      TableRow(children: <Widget> [
+                        TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Head Gasket', textAlign: TextAlign.left))),
+                        TableCell(child: Align(alignment: Alignment.centerRight, child: Text('11141-32E00', textAlign: TextAlign.right)))
+                      ]
+                      ),
+                      TableRow(children: <Widget> [
+                        TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Base Gasket', textAlign: TextAlign.left))),
+                        TableCell(child: Align(alignment: Alignment.centerRight, child: Text('11241-04F20', textAlign: TextAlign.right)))
+                      ]
+                      ),
+                      TableRow(children: <Widget> [
+                        TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Cam Journal Sealing Plug', textAlign: TextAlign.left))),
+                        TableCell(child: Align(alignment: Alignment.centerRight, child: Text('09241-25007', textAlign: TextAlign.right)))
+                      ]
+                      ),
+                      TableRow(children: <Widget> [
+                        TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Cylinder Head Sealing Washers (x4)', textAlign: TextAlign.left))),
+                        TableCell(child: Align(alignment: Alignment.centerRight, child: Text('09168-10017', textAlign: TextAlign.right)))
+                      ]
+                      ),
+                      TableRow(children: <Widget> [
+                        TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Cylinder Cap Bolt Seals (x2)', textAlign: TextAlign.left))),
+                        TableCell(child: Align(alignment: Alignment.centerRight, child: Text('09168-06023', textAlign: TextAlign.right)))
+                      ]
+                      ),
+                      TableRow(children: <Widget> [
+                        TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Oil Cooler Hose O-Ring (x2)', textAlign: TextAlign.left))),
+                        TableCell(child: Align(alignment: Alignment.centerRight, child: Text('09280-12012', textAlign: TextAlign.right)))
+                      ]
+                      ),
+                    ],
+                  ),
+                  Divider(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Chassis Bearings', textScaleFactor: 1.25, textAlign: TextAlign.left,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Table(
+                      border: TableBorder.all(color: Colors.white24, width: 1.0),
+                        children: [
+                        TableRow(children: <Widget> [
+                          TableCell(child: Align(alignment: Alignment.center, child: Text('Location'))),
+                          TableCell(child: Align(alignment: Alignment.center, child: Text('OEM #'))),
+                          TableCell(child: Align(alignment: Alignment.center, child: Text('Standard #')))
+                        ]
+                      ),
+                          TableRow(children: <Widget> [
+                            TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Front Wheel (x2)'))),
+                            TableCell(child: Align(alignment: Alignment.center, child: Text('08123-60037'))),
+                            TableCell(child: Align(alignment: Alignment.center, child: Text('6003 RS2')))
+                          ]
+                          ),
+                          TableRow(children: <Widget> [
+                            TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Rear Wheel (x2)'))),
+                            TableCell(child: Align(alignment: Alignment.center, child: Text('08123-62047'))),
+                            TableCell(child: Align(alignment: Alignment.center, child: Text('6204 RS2')))
+                          ]
+                          ),
+                          TableRow(children: <Widget> [
+                            TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Cush Hub'))),
+                            TableCell(child: Align(alignment: Alignment.center, child: Text('09262-25061'))),
+                            TableCell(child: Align(alignment: Alignment.center, child: Text('6205 RS2')))
+                          ]
+                          ),
+                          TableRow(children: <Widget> [
+                            TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Steering Head'))),
+                            TableCell(child: Align(alignment: Alignment.center, child: Text('09265-30014'))),
+                            TableCell(child: Align(alignment: Alignment.center, child: Text('CR0643L')))
+                          ]
+                          ),
+                    ]
+                  ),
+                  Divider(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Engine Bearings', textScaleFactor: 1.25, textAlign: TextAlign.left,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Table(
+                      border: TableBorder.all(color: Colors.white24, width: 1.0),
+                      children: [
+                        TableRow(children: <Widget> [
+                          TableCell(child: Align(alignment: Alignment.center, child: Text('Location'))),
+                          TableCell(child: Align(alignment: Alignment.center, child: Text('OEM #'))),
+                          TableCell(child: Align(alignment: Alignment.center, child: Text('Standard #')))
+                        ]
+                        ),
+                        TableRow(children: <Widget> [
+                          TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Main RH'))),
+                          TableCell(child: Align(alignment: Alignment.center, child: Text('09262-40008'))),
+                          TableCell(child: Align(alignment: Alignment.center, child: Text('6208')))
+                        ]
+                        ),
+                        TableRow(children: <Widget> [
+                          TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Main LH'))),
+                          TableCell(child: Align(alignment: Alignment.center, child: Text('09262-45011'))),
+                          TableCell(child: Align(alignment: Alignment.center, child: Text('6209')))
+                        ]
+                        ),
+                        TableRow(children: <Widget> [
+                          TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Balancer Shaft RH'))),
+                          TableCell(child: Align(alignment: Alignment.center, child: Text('09262-22029'))),
+                          TableCell(child: Align(alignment: Alignment.center, child: Text('63/22')))
+                        ]
+                        ),
+                        TableRow(children: <Widget> [
+                          TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Balancer Shaft LH'))),
+                          TableCell(child: Align(alignment: Alignment.center, child: Text('09262-20121'))),
+                          TableCell(child: Align(alignment: Alignment.center, child: Text('6204')))
+                        ]
+                        ),
+                        TableRow(children: <Widget> [
+                          TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Trans Input Shaft RH'))),
+                          TableCell(child: Align(alignment: Alignment.center, child: Text('09262-22028'))),
+                          TableCell(child: Align(alignment: Alignment.center, child: Text('OEM ONLY!')))
+                        ]
+                        ),
+                        TableRow(children: <Widget> [
+                          TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Trans Input Shaft LH'))),
+                          TableCell(child: Align(alignment: Alignment.center, child: Text('09262-17046'))),
+                          TableCell(child: Align(alignment: Alignment.center, child: Text('6203 RS1')))
+                        ]
+                        ),
+                        TableRow(children: <Widget> [
+                          TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Trans Output Shaft RH'))),
+                          TableCell(child: Align(alignment: Alignment.center, child: Text('09262-20059'))),
+                          TableCell(child: Align(alignment: Alignment.center, child: Text('6004 RS1')))
+                        ]
+                        ),
+                        TableRow(children: <Widget> [
+                          TableCell(child: Align(alignment: Alignment.centerLeft, child: Text('Trans Output Shaft LH'))),
+                          TableCell(child: Align(alignment: Alignment.center, child: Text('09262-25125'))),
+                          TableCell(child: Align(alignment: Alignment.center, child: Text('6305 RS1')))
+                        ]
+                        ),
+                      ]
+                  ),
+                ]
+            )
+        )
+    ));
   }
 }

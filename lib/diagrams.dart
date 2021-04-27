@@ -72,7 +72,7 @@ class MachineSpecs extends StatelessWidget {
         appBar: AppBar(
             title: Text('Machine Specs')
         ),
-        body: SingleChildScrollView(
+        body: InteractiveViewer( child: SingleChildScrollView(
           child:Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -572,7 +572,7 @@ class MachineSpecs extends StatelessWidget {
             ],
           ),
         )
-    );
+    ));
   }
 }
 
@@ -727,7 +727,7 @@ class ColoredWiring extends StatelessWidget {
         appBar: AppBar(
             title: Text('Colored Wiring Diagram')
         ),
-        body: SingleChildScrollView(
+        body: InteractiveViewer ( child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
                 Image.asset(_asset),
@@ -735,6 +735,6 @@ class ColoredWiring extends StatelessWidget {
               ],
             )
         )
-    );
+    ));
   }
 }

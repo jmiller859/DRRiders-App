@@ -52,11 +52,11 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: ListView(
           children: <Widget>[
-            ListTile(
+     /*       ListTile(
               title: Text('Maintenance Tracker'),
               onTap: () {_navigateToTracker(context);},
             ),
-            Divider(),
+            Divider(),*/
             ListTile(
                 title:Text('Diagrams & About Your DR'),
               onTap: () {_navigateToDiagrams(context);
