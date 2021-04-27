@@ -731,7 +731,7 @@ class ColoredWiring extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Image.asset(_asset),
-                Text('Thanks to DRRiders user nmerrill for making this color coded diagram')
+                Text('Turn phone sideways for best view\nThanks to DRRiders user nmerrill for making this color coded diagram')
               ],
             )
         )
