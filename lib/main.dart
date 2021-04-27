@@ -42,86 +42,75 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  final options = ['Diagrams & About Your DR','Maintenance Materials','Useful External Links'];
-  
+  final options = [
+    'Diagrams & About Your DR',
+    'Maintenance Materials',
+    'Useful External Links'
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Image.asset(
+              'assets/AppIcon.png',
+              fit: BoxFit.contain,
+              height: 32,
+            ),
+            Container(
+                padding: const EdgeInsets.all(8.0), child: Text('DRRider'))
+          ],
+
+        ),
       ),
       body: ListView(
-          children: <Widget>[
-     /*       ListTile(
+        children: <Widget>[
+          /*       ListTile(
               title: Text('Maintenance Tracker'),
               onTap: () {_navigateToTracker(context);},
             ),
             Divider(),*/
-            ListTile(
-                title:Text('Diagrams & About Your DR'),
-              onTap: () {_navigateToDiagrams(context);
-              },
-            ),
-            Divider(),
-            ListTile(
+          ListTile(
+            title: Text('Diagrams & About Your DR'),
+            onTap: () {
+              _navigateToDiagrams(context);
+            },
+          ),
+          Divider(),
+          ListTile(
               title: Text('Maintenance Materials'),
               onTap: () {
                 _navigateToMaintenance(context);
               }
-            ),
-            Divider(),
-            ListTile(
+          ),
+          Divider(),
+          ListTile(
               title: Text('Useful External Links'),
               onTap: () {
                 _navigateToExternalLinks(context);
               }
-            ),
-            Divider(),
-            ],
-    ),
+          ),
+          Divider(),
+        ],
+      ),
     );
   }
 
   void _navigateToExternalLinks(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ExternalLinks()));
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => ExternalLinks()));
   }
 
   void _navigateToDiagrams(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => Diagrams()));
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => Diagrams()));
   }
 
   void _navigateToMaintenance(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => Maintenance()));
-  }
-
-  void _navigateToTracker(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => MaintenanceTracker()));
-  }
-}
-
-class MaintenanceTracker extends StatefulWidget {
-  @override
-  _MaintenanceTrackerState createState() => _MaintenanceTrackerState();
-}
-
-class _MaintenanceTrackerState extends State<MaintenanceTracker> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-        title: Text('Maintenance Tracker'),
-    ),
-    body: Center(
-      child: Padding(
-          padding: const EdgeInsets.all(20.0),
-            child: Text('I\'m still a work in progress. \nI\'m not ready for use yet!')
-        )
-      )
-    );
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => Maintenance()));
   }
 }
