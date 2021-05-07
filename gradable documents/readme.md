@@ -84,6 +84,18 @@ I’m disregarding the cloud to device vector in the high level diagram. The bun
 |----------------|---------------------------|-------------------|------------|
 | Advanced PDF Viewer Utility | Not sure what to call this, maybe Asset Injection? | A evil user could overwrite an existing asset PDF and replace it with something else. Then when the pdfviewer is triggered during runtime with that asset path it will open the evil pdf. | **Accept the risk.** This one is so unrealistic and requires prior root access on the device to modify the asset file location. There is not much that could be done to protect the device in that case anyway. |
 
+## Testing
+
+There are not test cases for this project currently. Hold on! Don't start writing that 0/100 yet. 
+
+In it's current state DRRider does not have something that I can test easily via test case. The stateful widgets are all using private methods and variables. These are not reachable from a unit test case so that is a bust. 
+
+I attempted to widget test but the screens that I needed to test (the pdf viewer ones) are effectively useless because a failure case (when the progress indicate spins infinitely) is reached the findsWidgets will still return true since the widget does exsist and it is running even though it's waiting indefinitely for the document. From my short time working in app dev I've developed a burning hatred for test methods that aren't actually doing valid testing so I'm not going to serve up a directory full of- uh, *male cow excrement* if your following me, excuses for useless testcases.
+
+On a positive note, with the way that I have the app setup currently each screen only relies on methods within their classes. All of the screens are independent of each other so while developing if the current screen is not working it will not break any of the other screens in a cascade effect. This is partly because the AdvancedPDFViewer utility that I am working with does not play well in a utility class and will not signal a reload once it's done loading. I had to bend a knee after hammering on it for four days and drop the utility idea.
+
+So testing is currently as simple as checking that all of the items you need are appearing in the current screen. If the screens that you have made changes on are still functioning then the rest will be functioning still as well. Hopefully you can see that I did attempt to test it, unfortunately there isn't much that I can get hooks into with a test case that has actual meaning. 
+
 ## Packaging
 
 **Android:** In Beta and downloadable from the playstore [here.](https://play.google.com/store/apps/details?id=net.thistleranch.drrider)
