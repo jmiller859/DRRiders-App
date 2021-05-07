@@ -83,3 +83,13 @@ I’m disregarding the cloud to device vector in the high level diagram. The bun
 | Component name | Category of vulnerability | Issue Description | Mitigation |
 |----------------|---------------------------|-------------------|------------|
 | Advanced PDF Viewer Utility | Not sure what to call this, maybe Asset Injection? | A evil user could overwrite an existing asset PDF and replace it with something else. Then when the pdfviewer is triggered during runtime with that asset path it will open the evil pdf. | **Accept the risk.** This one is so unrealistic and requires prior root access on the device to modify the asset file location. There is not much that could be done to protect the device in that case anyway. |
+
+## Packaging
+
+**Android:** In Beta and downloadable from the playstore [here.](https://play.google.com/store/apps/details?id=net.thistleranch.drrider)
+
+**iOS:** Work In Progress on iOS Test Flight. 
+
+### Requirements
+
+Very light on resources. Any device that has 26MB to spare will most likely be able to run this app.
