@@ -138,7 +138,7 @@ class TuneUpSpecs extends StatelessWidget {
                   style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
-                Table (
+              Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child:Table (
                     border: TableBorder.all(color: Colors.white24, width: 1.0),
                     children: [
                       TableRow( children: <Widget> [
@@ -152,7 +152,7 @@ class TuneUpSpecs extends StatelessWidget {
                       ]
                       )
                     ]
-                ),
+                ),),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text('Set valve clearances with a completely cold engine at TDC of compression stroke\n'
@@ -165,7 +165,7 @@ class TuneUpSpecs extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
-                Table (
+              Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child:Table (
                     border: TableBorder.all(color: Colors.white24, width: 1.0),
                     children: [
                       TableRow( children: <Widget> [
@@ -199,7 +199,7 @@ class TuneUpSpecs extends StatelessWidget {
                       ]
                       )
                     ]
-                ),
+                ),),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text('** Checked at 3000 RPM, Oil temp at 140F, 60C', textScaleFactor: 0.80, textAlign: TextAlign.left,
@@ -211,7 +211,7 @@ class TuneUpSpecs extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
-                Table (
+              Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child: Table (
                     border: TableBorder.all(color: Colors.white24, width: 1.0),
                     children: [
                       TableRow( children: <Widget> [
@@ -240,14 +240,14 @@ class TuneUpSpecs extends StatelessWidget {
                       ]
                       )
                     ]
-                ),
+                ),),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text('Engine Oil', textScaleFactor: 1.5, textAlign: TextAlign.left,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
-                Table (
+              Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child: Table (
                     border: TableBorder.all(color: Colors.white24, width: 1.0),
                     children: [
                       TableRow( children: <Widget> [
@@ -266,7 +266,7 @@ class TuneUpSpecs extends StatelessWidget {
                       ]
                       )
                     ]
-                ),
+                ),),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text('*** This is the generally accepted amount that riders have found the bike needs following an oil change,'
@@ -281,7 +281,7 @@ class TuneUpSpecs extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
-                Table (
+              Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child:Table (
                     border: TableBorder.all(color: Colors.white24, width: 1.0),
                     children: [
                       TableRow( children: <Widget> [
@@ -330,7 +330,7 @@ class TuneUpSpecs extends StatelessWidget {
                       ]
                       )
                     ]
-                ),
+                ),),
               ]
           )
         )
@@ -446,7 +446,7 @@ class BSTAdjustment extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
-                Image.asset(_asset[0]),
+                Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child: Image.asset(_asset[0]),),
                 Divider(),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -454,7 +454,7 @@ class BSTAdjustment extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
-                Image.asset(_asset[1]),
+                Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child:Image.asset(_asset[1]),),
                 Divider(),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -462,7 +462,7 @@ class BSTAdjustment extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
-                Image.asset(_asset[2]),
+                Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0, bottom: 8.0), child:Image.asset(_asset[2]),),
                 Text(' - Lightly seat pilot screw by turning it clockwise. Do not overtighten!\n'
                     ' - Back the screw out 1.5 turns\n'
                     ' - Ride the machine for 15-30 minutes so it reaches full operating temp\n'
@@ -544,7 +544,7 @@ class CrossRef extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
-                  Table(
+              Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child:Table(
                     border: TableBorder.all(color: Colors.white24, width: 1.0),
                     children: [
                       TableRow(children: <Widget> [
@@ -568,7 +568,7 @@ class CrossRef extends StatelessWidget {
                       ]
                       ),
                     ],
-                  ),
+                  ),),
                   Divider(),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -576,7 +576,7 @@ class CrossRef extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
-                  Table(
+              Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child:Table(
                       border: TableBorder.all(color: Colors.white24, width: 1.0),
                       children: [
                         TableRow(children: <Widget> [
@@ -605,7 +605,7 @@ class CrossRef extends StatelessWidget {
                         ]
                         ),
                       ]
-                  ),
+                  ),),
                   Divider(),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -613,7 +613,7 @@ class CrossRef extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
-                  Table(
+              Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child: Table(
                       border: TableBorder.all(color: Colors.white24, width: 1.0),
                       children: [
                         TableRow(children: <Widget> [
@@ -657,7 +657,7 @@ class CrossRef extends StatelessWidget {
                         ]
                         ),
                       ]
-                  ),
+                  ),),
                   Divider(),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -665,7 +665,7 @@ class CrossRef extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
-                  Table(
+              Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child: Table(
                     border: TableBorder.all(color: Colors.white24, width: 1.0),
                     children: [
                       TableRow(children: <Widget> [
@@ -679,7 +679,7 @@ class CrossRef extends StatelessWidget {
                       ]
                       ),
                     ],
-                  ),
+                  ),),
                   Divider(),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -687,7 +687,7 @@ class CrossRef extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
-                  Table(
+              Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child: Table(
                     border: TableBorder.all(color: Colors.white24, width: 1.0),
                     children: [
                       TableRow(children: <Widget> [
@@ -746,7 +746,7 @@ class CrossRef extends StatelessWidget {
                       ]
                       ),
                     ],
-                  ),
+                  ),),
                   Divider(),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -754,7 +754,7 @@ class CrossRef extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
-                  Table(
+              Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child: Table(
                       border: TableBorder.all(color: Colors.white24, width: 1.0),
                         children: [
                         TableRow(children: <Widget> [
@@ -788,7 +788,7 @@ class CrossRef extends StatelessWidget {
                           ]
                           ),
                     ]
-                  ),
+                  ),),
                   Divider(),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -796,7 +796,7 @@ class CrossRef extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
-                  Table(
+                  Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child: Table(
                       border: TableBorder.all(color: Colors.white24, width: 1.0),
                       children: [
                         TableRow(children: <Widget> [
@@ -854,7 +854,7 @@ class CrossRef extends StatelessWidget {
                         ]
                         ),
                       ]
-                  ),
+                  ),),
                 ]
             )
         )

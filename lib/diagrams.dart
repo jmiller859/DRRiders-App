@@ -82,7 +82,7 @@ class MachineSpecs extends StatelessWidget {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
-              Table(
+              Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child: Table(
                   border: TableBorder.all(color: Colors.white24, width: 1.0),
                   children: [
                     TableRow(
@@ -158,14 +158,14 @@ class MachineSpecs extends StatelessWidget {
                         ]
                     ),
                   ]
-              ),
+              ),),
               Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text('Engine', textScaleFactor: 2, textAlign: TextAlign.left,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   )
               ),
-              Table(
+          Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child: Table(
                 border: TableBorder.all(color: Colors.white24, width: 1.0),
                 children: [
                   TableRow(
@@ -241,14 +241,14 @@ class MachineSpecs extends StatelessWidget {
                       ]
                   ),
                 ],
-              ),
+              ),),
               Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text('Transmission', textScaleFactor: 2, textAlign: TextAlign.left,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   )
               ),
-              Table(
+          Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child: Table(
                   border: TableBorder.all(color: Colors.white24, width: 1.0),
                   children: [
                     TableRow(
@@ -324,14 +324,14 @@ class MachineSpecs extends StatelessWidget {
                         ]
                     ),
                   ]
-              ),
+              ),),
               Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text('Chassis', textScaleFactor: 2, textAlign: TextAlign.left,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   )
               ),
-              Table(
+            Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child: Table(
                   border: TableBorder.all(color: Colors.white24, width: 1.0),
                   children: [
                     TableRow(
@@ -408,14 +408,14 @@ class MachineSpecs extends StatelessWidget {
                         ]
                     ),
                   ]
-              ),
+              ),),
               Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text('Electronics', textScaleFactor: 2, textAlign: TextAlign.left,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   )
               ),
-              Table(
+          Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child: Table(
                   border: TableBorder.all(color: Colors.white24, width: 1.0),
                   children: [
                     TableRow(
@@ -521,14 +521,14 @@ class MachineSpecs extends StatelessWidget {
                         ]
                     ),
                   ]
-              ),
+              ),),
               Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text('Capacities', textScaleFactor: 2, textAlign: TextAlign.left,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   )
               ),
-              Table(
+            Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child: Table(
                   border: TableBorder.all(color: Colors.white24, width: 1.0),
                   children: [
                     TableRow(
@@ -568,7 +568,7 @@ class MachineSpecs extends StatelessWidget {
                         ]
                     ),
                   ]
-              ),
+              ),),
             ],
           ),
         )
