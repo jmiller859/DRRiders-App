@@ -727,10 +727,13 @@ class ColoredWiring extends StatelessWidget {
         appBar: AppBar(
             title: Text('Colored Wiring Diagram')
         ),
-        body: InteractiveViewer (constrained: false, child: SingleChildScrollView(
+        body: InteractiveViewer (
+            constrained: false,
+            minScale: 0.01,
+            child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                Image.asset(_asset),
+                Image.asset(_asset, fit: BoxFit.fitWidth),
                 Text('Turn phone sideways for best view\nThanks to DRRiders user nmerrill for making this color coded diagram')
               ],
             )
