@@ -418,7 +418,10 @@ class LubePoints extends StatelessWidget {
         appBar: AppBar(
             title: Text('Lubrication Points')
         ),
-        body: InteractiveViewer(child: SingleChildScrollView(
+        body: InteractiveViewer(
+            constrained: false,
+            minScale: 0.1,
+            child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
                 Image.asset(_asset),
