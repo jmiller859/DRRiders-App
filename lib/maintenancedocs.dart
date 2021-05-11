@@ -374,41 +374,573 @@ class _MaintenanceProceduresState extends State<MaintenanceProcedures> {
   }
 }
 
-class TorqueTable extends StatefulWidget {
-  @override
-  _TorqueTableState createState() => _TorqueTableState();
-}
-
-class _TorqueTableState extends State<TorqueTable> {
-  static final asset ='assets/TorqueTable.pdf';
-  PDFDocument document;
-  bool _isLoading = true;
-
-  loadDocument() async {
-    document = await PDFDocument.fromAsset(asset);
-    setState(() => _isLoading = false);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    loadDocument();
-  }
-
+class TorqueTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Torque Table'),
-      ),
-      body: Center(child:
-      _isLoading ? Center(child: CircularProgressIndicator())
-          : PDFViewer(
-        document: document, scrollDirection: Axis.vertical,)
-      ),
+        appBar: AppBar(
+          title: Text('Torque Tables'),
+        ),
+        body:  InteractiveViewer(child: SingleChildScrollView(
+          child:Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text('Engine', textScaleFactor: 1.5, textAlign: TextAlign.left,
+              style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+            Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child:Table (
+                border: TableBorder.all(color: Colors.white24, width: 1.0),
+                children: [
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Item', style: TextStyle(fontWeight: FontWeight.bold))))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('ft-lbs', style: TextStyle(fontWeight: FontWeight.bold))))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('n-m', style: TextStyle(fontWeight: FontWeight.bold))))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Cam Chain Tensioner Cap Bolt')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('4.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('6')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Cam Chain Tensioner Mounting Bolt')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('7.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('10')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Cam Chain Tensioner Fitting Bolt')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('9.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('13')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Camshaft Sprocket Bolt')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('11.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('15')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Clutch Hub Nut')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('36.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('50')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Clutch Spring Mounting Bolt')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('7.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('10')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Crankcase Bolt')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('8.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('11')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Crankshaft Bearing Retaining Nut')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('58.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('80')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Valve Cover Bolt')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('7.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('10')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Cylinder Head Bolt')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('27.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('38')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Cylinder Head Nut')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('18.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('25')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Cylinder Base Nut')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('7.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('10')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Engine Oil Drain Plug Bolt')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('16.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('23')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Countershaft Sprocket Bolt')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('4.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('6')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Engine Mounting Bolt (M8)')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('29.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('40')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Engine Mounting Bolt (M10)')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('47.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('65')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Engine Mounting Bracket Bolts (Front & Upper)')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('29.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('40')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Engine Mounting Bracket Bolt (Rear)')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('16.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('23')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Oil Cooler Hose Bolt')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('7.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('10')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Engine Oil Pipe Union Bolt (Cylinder Head)')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('16.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('23')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Engine Oil Pipe Hose Bolt (Crank Case)')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('14.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('20')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Exhaust Header-Flange Bolt')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('19.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('26')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Gearshift Arm Stopper')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('13.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('19')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Generator Cover Plug')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('11.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('25')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Generator Rotor Bolt')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('115.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('160')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Oil Gallery Plug')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('16.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('23')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Oil Jet Bolt')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('7.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('10')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Primary Drive Gear Bolt')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('72.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('100')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Spark Plug')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('8.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('11')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Starter Clutch Bolt')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('18.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('25')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Timing View Port Plug')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('16.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('23')))),
+                  ]
+                  ),
+                ]
+            )),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('Chassis', textScaleFactor: 1.5, textAlign: TextAlign.left,
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+            Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child:Table (
+                border: TableBorder.all(color: Colors.white24, width: 1.0),
+                children: [
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Item', style: TextStyle(fontWeight: FontWeight.bold))))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('ft-lbs', style: TextStyle(fontWeight: FontWeight.bold))))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('n-m', style: TextStyle(fontWeight: FontWeight.bold))))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Brake Bleeder Bolt')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('6.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('8')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Caliper Axle Bolt, Front')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('16.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('23')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Caliper Axle Bolt, Rear')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('9.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('13')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Caliper Mounting Bolt, Front')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('19.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('26')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Brake Disc Mounting Bolt')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('16.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('23')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Brake Hose Banjo Bolt')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('16.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('23')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Master Cylinder Mounting Bolt, Front & Rear')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('7.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('10')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Brake Pad Mounting Pin, Front & Rear')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('13.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('18')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Front Brake Mounting Pin Plug')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('1.8')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('0.25')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Rod Lock Nut, Rear Brake')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('13.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('18')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Lower Chain Roller Mounting Bolt')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('29.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('40')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Upper Chain Roller Mounting Bolt')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('REMOVE!')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('RISK OF FRAME DAMAGE')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Front Axle')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('47.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('65')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Front Axle Nut')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('7.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('10')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Fork Damper Rod Bolt')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('21.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('30')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Lower Fork Clamp Bolt')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('19.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('26')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Upper Fork Clamp Bolt')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('21.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('29')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Fork Leg Cap')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('16.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('23')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Steering Stem Head Nut')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('65.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('90')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Handlebar Clamp Bolt')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('16.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('23')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Hadlebar Holder Nut')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('18.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('25')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Footpeg Mount Bolt')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('28.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('39')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Swingarm Pivot Axle Nut')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('55.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('77')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Shock Mounting Bolt, Upper & Lower')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('40.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('55')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Shock Linkage Nut (Front)')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('58.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('80')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Shock Linkage Lever Nut (Rear)')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('72.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('100')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Shock Rod Nut')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('72.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('100')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Rear Axle Nut (Castle Nut Style)')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('72.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('100')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Rear Axle Nut (Fuji Nut Style)')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('79.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('110')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Rear Sprocket Mounting Bolt')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('19.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('27')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Spoke Nipple')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('3.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('0.45')))),
+                    ]
+                  ),
+                  ]
+            )),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('Other Conventional or "4" Marked Bolts', textScaleFactor: 1.5, textAlign: TextAlign.left,
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+            Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child:Table (
+                border: TableBorder.all(color: Colors.white24, width: 1.0),
+                children: [
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Bolt Diam', style: TextStyle(fontWeight: FontWeight.bold))))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('ft-lb', style: TextStyle(fontWeight: FontWeight.bold))))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('n-m', style: TextStyle(fontWeight: FontWeight.bold))))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('M4')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('1.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('1.5')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('M5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('2.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('3')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('M6')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('4.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('5.5')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('M8')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('9.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('13')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('M10')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('21.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('29')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('M12')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('32.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('45')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('M14')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('47.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('65')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('M16')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('76.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('105')))),
+                    ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('M18')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('115.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('160')))),
+                  ]
+                  ),
+            ]
+            )),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('Other "7" Marked Bolts', textScaleFactor: 1.5, textAlign: TextAlign.left,
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+            Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child:Table (
+                border: TableBorder.all(color: Colors.white24, width: 1.0),
+                children: [
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('Bolt Diam', style: TextStyle(fontWeight: FontWeight.bold))))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('ft-lb', style: TextStyle(fontWeight: FontWeight.bold))))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('n-m', style: TextStyle(fontWeight: FontWeight.bold))))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('M4')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('1.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('2.3')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('M5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('3.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('4.5')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('M6')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('7.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('10')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('M8')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('16.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('23')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('M10')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('36.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('50')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('M12')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('61.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('85')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('M14')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('97.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('135')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('M16')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('152.0')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('210')))),
+                  ]
+                  ),
+                  TableRow( children: <Widget> [
+                    TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('M18')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('173.5')))),
+                    TableCell(child: Align(alignment: Alignment.center, child: Padding( padding: const EdgeInsets.all(4.0), child: Text('240')))),
+                  ]
+                  ),
+                ]
+            ))
+            ]
+          )
+    )
+    )
     );
   }
 }
+
 
 class LubePoints extends StatelessWidget {
   final _asset = 'assets/LubePoints.png';
