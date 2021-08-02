@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
+import 'carbs.dart';
 
 class Maintenance extends StatelessWidget {
   @override
@@ -38,9 +39,9 @@ class Maintenance extends StatelessWidget {
           ),
           Divider(),
           ListTile(
-            title: Text('Carburetor Adjustment & Specs'),
-            subtitle: Text('BST Magic'),
-            onTap: () {_navigateToBSTAdjustment(context);},
+            title: Text('Carburetors'),
+            subtitle: Text('OEM & Aftermarket Options'),
+            onTap: () {_navigateToCarburetors(context);},
           ),
           Divider(),
           ListTile(
@@ -73,8 +74,8 @@ class Maintenance extends StatelessWidget {
   void _navigateToLubricationPoints(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => LubePoints()));
   }
-  void _navigateToBSTAdjustment(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => BSTAdjustment()));
+  void _navigateToCarburetors(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => CarbScreen()));
   }
   void _navigateToServiceData(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => ServiceData()));
@@ -957,68 +958,6 @@ class LubePoints extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Image.asset(_asset),
-              ],
-            )
-        )
-    ));
-  }
-}
-
-class BSTAdjustment extends StatelessWidget {
-  final _asset = ['assets/BSTExploded.png', 'assets/BSTSpecs.png', 'assets/PilotPlugRemoval.png'];
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-            title: Text('Carburetor Adjustment & Specs')
-        ),
-        body: InteractiveViewer( child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text('Exploded View', textScaleFactor: 1.5, textAlign: TextAlign.left,
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child: Image.asset(_asset[0]),),
-                Divider(),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text('Factory Tune', textScaleFactor: 1.5, textAlign: TextAlign.left,
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child:Image.asset(_asset[1]),),
-                Divider(),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text('Pilot Adjustment', textScaleFactor: 1.5, textAlign: TextAlign.left,
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0, bottom: 8.0), child:Image.asset(_asset[2]),),
-                Text(' - Lightly seat pilot screw by turning it clockwise. Do not overtighten!\n'
-                    ' - Back the screw out 1.5 turns\n'
-                    ' - Ride the machine for 15-30 minutes so it reaches full operating temp\n'
-                    ' - With idle at 1500 RPM slowly turn pilot screw clockwise until the idle stumbles and becomes erratic\n'
-                    ' - Now slowly turn the screw counter-clockwise until the idle smoothes out, at this point turn the screw 1/16 to 3/16 further\n'
-                    ' - Pilot circuit is now set', textScaleFactor: 1, textAlign: TextAlign.left),
-                Divider(),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text('Needle Adjustment', textScaleFactor: 1.5, textAlign: TextAlign.left,
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                Padding(
-                    padding: const EdgeInsets.only(left: 4.0, bottom: 8.0 ),
-                    child: Text('There are multiple ways to tune the BST-40 all of which are supported by dyno charts. This is just one of them (and the cheapest)'
-                    ' so please read up and decide on the path you will take.\n\n'
-                    'The USA E-03/33 needle is a single position needle that you cannot adjust without shimming. The adjustable 6F19 needle used in the rest of the world is available from motolab in the "external links" section.\n'
-                    'Shims for this purpose are stainless or brass flat washers for M3-M4 screws and are typically around .5mm in thickness. You want to place the shim below the needle clip (part# 4 in the diagram), but above the '
-                    'white plastic spacer (part# 5). Inspect the white spacer for wear marks where it contacts the shelf inside the slide. Flip or replace the spacer as needed to prevent leaning out of the jetting. Typically shimming the needle'
-                    '0.5-1mm is all that is required depending on altitude.'))
               ],
             )
         )
