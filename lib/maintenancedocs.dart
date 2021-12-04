@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 import 'carbs.dart';
+import 'engineDisassembly.dart';
 
 class Maintenance extends StatelessWidget {
   @override
@@ -33,15 +34,20 @@ class Maintenance extends StatelessWidget {
           ),
           Divider(),
           ListTile(
+            title: Text('Carburetors'),
+            subtitle: Text('OEM & Aftermarket Options'),
+            onTap: () {_navigateToCarburetors(context);},
+          ),
+          Divider(),
+          ListTile(
             title: Text('Lubrication Points'),
             subtitle: Text('Not just the chain'),
             onTap: () {_navigateToLubricationPoints(context);},
           ),
           Divider(),
           ListTile(
-            title: Text('Carburetors'),
-            subtitle: Text('OEM & Aftermarket Options'),
-            onTap: () {_navigateToCarburetors(context);},
+            title: Text('Engine Disassembly Guide'),
+            onTap: () {_navigateToEngineDisassembly(context);},
           ),
           Divider(),
           ListTile(
@@ -61,6 +67,9 @@ class Maintenance extends StatelessWidget {
   }
   void _navigateToSchedule(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => Schedule()));
+  }
+  void _navigateToEngineDisassembly(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => EngineDisassembly()));
   }
   void _navigateToTuneUpSpecs(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => TuneUpSpecs()));
