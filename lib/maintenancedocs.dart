@@ -46,7 +46,7 @@ class Maintenance extends StatelessWidget {
           ),
           Divider(),
           ListTile(
-            title: Text('Engine Disassembly Guide'),
+            title: Text('Engine Disassembly Guides'),
             onTap: () {_navigateToEngineDisassembly(context);},
           ),
           Divider(),
