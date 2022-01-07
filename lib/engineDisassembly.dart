@@ -141,7 +141,50 @@ class Head extends StatelessWidget {
             child:Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                ]
+                  Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Tools', textScaleFactor: 1.5, textAlign: TextAlign.left,
+                          style: TextStyle(fontWeight: FontWeight.bold))),
+                  Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('- 12mm Wrench\n- 10mm Wrench\n- 14mm Socket\n'
+                          '- 12mm Socket\n- Breaker Bar or Long Socket Wrench\n- Prybar\n- Mallet\n\n'
+                          'You\'re now getting into the guts of the engine. Make sure to be working in a clean environment and cover or plug exposed internals with clean rags before you walk away.\n'
+                          'You may need an oil catch pan as there is a small reservoir of oil under the cam that may need to be dumped out.',
+                        textScaleFactor: 1.0, textAlign: TextAlign.left,)),
+                  Divider(),
+                  Align(child: Padding(padding: EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child: Image.asset("assets/hc1.png")), alignment: Alignment.center),
+                  Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Begin by removing the 12mm bolt and crush washer holding on the upper chain guide. You can either fish the guide out with a pair of needle nose pliers or you can pull it out it after you get the head off.',
+                        textScaleFactor: 1.0, textAlign: TextAlign.left,)),
+                  Align(child: Padding(padding: EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child: Image.asset("assets/hc2.png")), alignment: Alignment.center),
+                  Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Remove the 4 14mm head bolts on top of the engine with your 14mm socket and big leverage tool. Two bolts next to the spark plugs, two on the cam chain side that were under the valve cover.'
+                          ' They have copper sealing washers under them that may stay stuck to the head or come free with the bolt so keep track of them. The head bolts are reusable so hang on to them.\n'
+                          'Also remove the two 12mm nuts holding the head on using the 12mm wrench. One is under the intake side of the engine and the other on the exhaust side. The exhaust side nut can be an absolute bear to get out with the engine in the frame.',
+                        textScaleFactor: 1.0, textAlign: TextAlign.left,)),
+                  Align(child: Padding(padding: EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child: Image.asset("assets/hc3.png")), alignment: Alignment.center),
+                  Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('The head can now be lifted. It is aligned with dowel pins so you may need some wiggling and tapping with a mallet to get it up. You can also gently pry with a prybar but ensure that you work back and forth so the head comes up square.',
+                        textScaleFactor: 1.0, textAlign: TextAlign.left,)),
+                  Align(child: Padding(padding: EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child: Image.asset("assets/hc4.png")), alignment: Alignment.center),
+                  Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Remove the two 10mm nuts at the bottom of the cylinder at the clutch side of the engine. Take this time to remove the lower cam chain guide as well as the upper if you did not lift it out earlier.',
+                        textScaleFactor: 1.0, textAlign: TextAlign.left,)),
+                  Align(child: Padding(padding: EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child: Image.asset("assets/hc5.png")), alignment: Alignment.center),
+                  Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('If you are not going deeper than this (like fixing a base gasket leak) take care to ensure that the cam chain does not drop into the bottom of the engine when the cylinder is lifted.'
+                          ' Once again with a mixture of tapping and prying if needed lift the cylinder off the bottom of the engine and continue lifting till the piston comes free of the cylinder.',
+                        textScaleFactor: 1.0, textAlign: TextAlign.left,)),
+                  Align(child: Padding(padding: EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child: Image.asset("assets/hc6.png")), alignment: Alignment.center),
+                  Divider(),
+                  Padding(padding: EdgeInsets.all(8.0), child: Text('Thank you to BergDonk of DRRiders for the provided photos.', textAlign: TextAlign.left, textScaleFactor: 1.0,))
+                  ]
             )))
     );
   }
