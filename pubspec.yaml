@@ -32,7 +32,7 @@ dependencies:
   flutter:
     sdk: flutter
   url_launcher: ^6.0.0 # external browser links
-  advance_pdf_viewer: any # Internal document viewer
+  advance_pdf_viewer: 2.0.0 # Internal document viewer
   plugin_platform_interface: ^2.1.2
 
   # The following adds the Cupertino Icons font to your application.

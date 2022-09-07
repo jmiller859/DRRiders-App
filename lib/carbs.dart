@@ -54,7 +54,7 @@ class CarbScreen extends StatelessWidget {
 }
 
 class BSTAdjustment extends StatelessWidget {
-  final _asset = ['assets/BSTExploded.png', 'assets/BSTSpecs.png', 'assets/PilotPlugRemoval.png', 'assets/jetchart.jpg'];
+  final _asset = ['assets/BSTExploded.png', 'assets/BSTSpecs.png', 'assets/PilotPlugRemoval.png'];
 
   BSTAdjustment({super.key});
   @override
@@ -266,51 +266,12 @@ class TM40 extends StatelessWidget {
   }
   _navigateToTMTune(BuildContext context) {
     Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => const TMTune()));
-  }
-}
-
-class TMTune extends StatefulWidget {
-  const TMTune({super.key});
-
-  @override
-  _TMTune createState() => _TMTune();
-}
-
-class _TMTune extends State<TMTune> {
-  static const  asset ='assets/TM40.pdf';
-  late PDFDocument document;
-  bool _isLoading = true;
-
-  loadDocument() async {
-    document = await PDFDocument.fromAsset(asset);
-    setState(() => _isLoading = false);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    loadDocument();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('TM40 Tuning Guide'),
-      ),
-      body: Center(child:
-      _isLoading ? const Center(child: CircularProgressIndicator())
-          : PDFViewer(
-        document: document, scrollDirection: Axis.vertical, lazyLoad: false,) //Large file
-      ),
-    );
+        MaterialPageRoute(builder: (context) => const PDFLaunch(2, "TM40 Tuning Guide")));
   }
 }
 
 class FCR extends StatelessWidget {
   final _asset = ['assets/yzffcr.gif', 'assets/ktmfcr.jpg'];
-
   FCR({super.key});
 
   @override
@@ -346,12 +307,95 @@ class FCR extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text('- 155 Main Jet\n- EMP Needle 4th clip from the top + .5mm shim\n- 100 Pilot Air\n- 200 Main Air\n- 35 Leak Jet'
-                    '- 75 Starter Circuit Jet\n- Slide Cutaway Mod\n- 9mm Float Height\n- Merge Racing (Procycle) APS Spring\n- Extended Pilot Screw'),
-              )
+                    '- 75 Starter Circuit Jet\n- Slide Cutaway Mod\n- 9mm Float Height\n- Merge Racing (Procycle) APS Spring\n- Extended Pilot Screw\n\n '
+                    'This jetting was designed for machines at sea level, further refinement might be needed for machines at higher altitudes. '),
+              ),
+              const Divider(),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text('AP Timing Adjustment Procedure', textScaleFactor: 1.5, textAlign: TextAlign.left,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text('This is required after changing the leak jet or installing the Merge/Procycle AP spring.\n'
+                    'With the carb removed from the bike attach a long hose to your gas tank and attach it to the'
+                    'carb. Turn the petcock to prime. Sit on the floor next to the bike so the fuel fills the carb. I do'
+                    ' this with the throttle cables removed. Make sure to have a clean dry towel handy right next to'
+                    ' you within reach to dry off the back of the slide. Twist the throttle cam a few times to make'
+                    ' sure all the air is bled out of the AP pump. Remember fuel will be shooting out of the front of'
+                    ' the carb as you are testing. You could stuff a rag in the front but just make sure it’s not'
+                    ' affecting the test procedure by bouncing back onto the slide somehow. Be sure to hold the carb'
+                    ' as level as possible.\n'
+                    'Dry the back of the slide off completely after each twist of the throttle so you can see if fuel'
+                    ' hits it. Once the slide is wet it is hard to tell if fuel hits it again. The fuel hits the right corner'
+                    ' of the slide cut away arc (if its hitting it at all that is). The goal is to have the fuel just miss'
+                    ' the slide. If you are going to err lean towards the fuel just barely catching the corner of the'
+                    ' slide in lieu of missing it by too much. Adjust the timing screw on the throttle cam to make'
+                    ' corrections as required.'),
+              ),
+              const Divider(),
+              Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ListTile( title: const Text('FCR In-Depth Setup Guide', textScaleFactor: 1.25, textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),),
+                      onTap: () {_navigateToPDF(context, 0, "FCR Detailed Setup");})
+              ),
+              const Divider(),
+              Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ListTile( title: const Text('FCR Installation Guide', textScaleFactor: 1.25, textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),),
+                      onTap: () {_navigateToPDF(context, 1, "FCR Installation");})
+              ),
+              const Divider()
             ]
             )
         )
         )
+    );
+  }
+  _navigateToPDF(BuildContext context, var asset, String title) {
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) =>  PDFLaunch(asset, title)));
+  }
+}
+
+class PDFLaunch extends StatefulWidget {
+  final int index;
+  final String title;
+  const PDFLaunch(this.index, this.title, {super.key});
+
+  @override
+  _PDFLaunch createState() => _PDFLaunch();
+}
+
+class _PDFLaunch extends State<PDFLaunch> {
+  static final asset =['assets/FCRsetup.pdf', 'assets/FCRInstall.pdf','assets/TM40.pdf'];
+  late PDFDocument document;
+  bool _isLoading = true;
+
+  loadDocument() async {
+    document = await PDFDocument.fromAsset(asset[widget.index]);
+    setState(() => _isLoading = false);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadDocument();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Center(child:
+      _isLoading ? const Center(child: CircularProgressIndicator())
+          : PDFViewer(
+        document: document, scrollDirection: Axis.vertical, lazyLoad: false,) //Large file
+      ),
     );
   }
 }
