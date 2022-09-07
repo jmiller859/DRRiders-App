@@ -6,10 +6,12 @@ import 'maintenancedocs.dart';
 
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -21,24 +23,24 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.grey[600],
         accentColor: Colors.grey[800],
         fontFamily: 'Roboto',
-        textTheme: TextTheme(
+        textTheme: const TextTheme(
             headline1: TextStyle(fontSize: 48.0, fontWeight: FontWeight.bold),
             subtitle1: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
             bodyText2: TextStyle(fontSize: 14.0, color: Colors.white70)),
 
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'DRRider'),
+      home: const MyHomePage(title: 'DRRider'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  const MyHomePage({super.key, required this.title});
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -62,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 32,
             ),
             Container(
-                padding: const EdgeInsets.all(8.0), child: Text('DRRider'))
+                padding: const EdgeInsets.all(8.0), child: const Text('DRRider'))
           ],
 
         ),
@@ -75,26 +77,26 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Divider(),*/
           ListTile(
-            title: Text('Diagrams & About Your DR'),
+            title: const Text('Diagrams & About Your DR'),
             onTap: () {
               _navigateToDiagrams(context);
             },
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-              title: Text('Maintenance Materials'),
+              title: const Text('Maintenance Materials'),
               onTap: () {
                 _navigateToMaintenance(context);
               }
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-              title: Text('Useful External Links'),
+              title: const Text('Useful External Links'),
               onTap: () {
                 _navigateToExternalLinks(context);
               }
           ),
-          Divider(),
+          const Divider(),
         ],
       ),
     );

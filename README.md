@@ -1,21 +1,16 @@
-# drrider
+# drriders_app
 
-Cross-platform DR650 maintainence app
+Crossplatform DR650SE maintenance app
 
-## Current Version
+## Getting Started
 
-v1.0.2
+This project is a starting point for a Flutter application.
 
-## Packaging & Install
+A few resources to get you started if this is your first Flutter project:
 
-**Android:** In Beta and downloadable from the playstore [here.](https://play.google.com/store/apps/details?id=net.thistleranch.drrider)
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-**iOS:** Admin work in progress on iOS Test Flight. 
-
-### Requirements
-
-Very light on resources. Any device that has 26MB to spare will most likely be able to run this app.
-
-### Getting Started
-
-This app is pretty intuitive and targeted at someone who knows about 20% of what they're looking for. If you're looking for a diagram you can find it in the diagrams, if you're looking for maintenance data or how-tos you can find them in maintenance section, if you can't find what you're looking for in the app then the external links section can get you to even more information about your bike.
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
