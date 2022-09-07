@@ -26,6 +26,12 @@ class CarbScreen extends StatelessWidget {
             subtitle: Text("The Mad Tuner's Choice"),
             onTap: () {_navigateToFCR(context);},
           ),
+          Divider(),
+          ListTile(
+            title: Text('Jet Size Conversion Chart'),
+            subtitle: Text("For Cross-Referencing Jets"),
+            onTap: () {_navigateToChart(context);},
+          ),
           Divider()
         ]
         )
@@ -39,6 +45,9 @@ class CarbScreen extends StatelessWidget {
   }
   void _navigateToFCR(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => FCR()));
+  }
+  void _navigateToChart(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => JetChart()));
   }
 }
 
@@ -156,20 +165,7 @@ class BSTAdjustment extends StatelessWidget {
                   ])
               ),
               Divider(),
-              Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text('Jet Size Conversion Chart', textScaleFactor: 1.5, textAlign: TextAlign.left,
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-              ),
-              Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text('Here\'s a handy chart for jet sizes and their closest relationship with other manufacturers jets. They are not guaranteed to be the '
-                      'exact same size but it\'s as close as they get.'),
-                  ),
-              Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child: Image.asset(_asset[3]),),
-            ],
-            )
+        ])
         )
         )
     );
@@ -344,3 +340,35 @@ class FCR extends StatelessWidget {
     );
   }
 }
+
+class JetChart extends StatelessWidget {
+  final _asset = 'assets/jetchart.jpg';
+  @override
+  Widget build(BuildContext context) {
+
+    return Scaffold(
+        appBar: AppBar(
+        title: Text('Jet Size Chart')
+    ),
+    body: InteractiveViewer( child: SingleChildScrollView(
+    child: Column(
+    children: <Widget>[
+        Padding(
+        padding: const EdgeInsets.all(8.0),
+      child: Text('Jet Size Conversion Chart', textScaleFactor: 1.5, textAlign: TextAlign.left,
+        style: TextStyle(fontWeight: FontWeight.bold),
+      ),
+    ),
+      Padding(
+      padding: const EdgeInsets.all(8.0),
+       child: Text('Here\'s a handy chart for jet sizes and their closest relationship with other manufacturers jets. They are not guaranteed to be the '
+        'exact same size but it\'s as close as they get in relation.'),
+       ),
+      Padding( padding: const EdgeInsetsDirectional.only(start: 8.0, end: 8.0), child: Image.asset(_asset),),
+      ],
+    )
+    )
+    )
+    );
+  }
+  }
