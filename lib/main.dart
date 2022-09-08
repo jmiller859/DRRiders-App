@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'externallinks.dart';
 import 'diagrams.dart';
-import 'maintenancedocs.dart';
+import 'maintenance/maintenancedocs.dart';
 
 
 

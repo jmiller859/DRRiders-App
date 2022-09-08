@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:drriders_app/pdfscreen.dart';
+import 'package:drriders_app/utilities/pdfscreen.dart';
 
 class Diagrams extends StatelessWidget {
   @override
