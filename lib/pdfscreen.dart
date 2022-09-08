@@ -11,7 +11,7 @@ class PDFLaunch extends StatefulWidget {
 }
 
 class _PDFLaunch extends State<PDFLaunch> {
-  static final asset =['assets/FCRsetup.pdf', 'assets/FCRInstall.pdf','assets/TM40.pdf','assets/MaintenanceSchedule.pdf','assets/Procedures.pdf'
+  static final asset =['assets/FCRsetup.pdf', 'assets/FCRInstall.pdf','assets/TM40.pdf','assets/MaintenanceSchedule.pdf','assets/Procedures.pdf',
       'assets/WearLimits.pdf','assets/ExplodedViews.pdf','assets/LubeSystem.pdf','assets/ElectricalSystem.pdf','assets/WCHRouting.pdf'];
   late PDFDocument document;
   bool _isLoading = true;
