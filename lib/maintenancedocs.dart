@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 import 'carbs.dart';
 import 'engineDisassembly.dart';
+import 'package:drriders_app/pdfscreen.dart';
+
 
 class Maintenance extends StatelessWidget {
   @override
@@ -66,7 +67,7 @@ class Maintenance extends StatelessWidget {
     );
   }
   void _navigateToSchedule(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => Schedule()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PDFLaunch(3, 'Factory Maintenance Schedule')));
   }
   void _navigateToEngineDisassembly(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => EngineDisassembly()));
@@ -75,7 +76,7 @@ class Maintenance extends StatelessWidget {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => TuneUpSpecs()));
   }
   void _navigateToMaintenanceProcedures(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const MaintenanceProcedures()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PDFLaunch(4,'Factory Maintenance Procedures')));
   }
   void _navigateToTorqueTable(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => TorqueTable()));
@@ -87,48 +88,13 @@ class Maintenance extends StatelessWidget {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CarbScreen()));
   }
   void _navigateToServiceData(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ServiceData()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PDFLaunch(5, 'Engine Data & Wear Limits')));
   }
   void _navigateToCrossRef(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CrossRef()));
   }
 }
 
-class Schedule extends StatefulWidget {
-  @override
-  _ScheduleState createState() => _ScheduleState();
-}
-
-class _ScheduleState extends State<Schedule> {
-  static const  asset ='assets/MaintenanceSchedule.pdf';
-  late PDFDocument document;
-  bool _isLoading = true;
-
-  loadDocument() async {
-    document = await PDFDocument.fromAsset(asset);
-    setState(() => _isLoading = false);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    loadDocument();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Factory Maintenance Schedule'),
-      ),
-      body: Center(child:
-      _isLoading ? const Center(child: CircularProgressIndicator())
-          : PDFViewer(
-        document: document, scrollDirection: Axis.vertical, lazyLoad: false,) //Large file
-      ),
-    );
-  }
-}
 
 class TuneUpSpecs extends StatelessWidget {
   final _asset = 'assets/OilChart.png';
@@ -348,43 +314,6 @@ class TuneUpSpecs extends StatelessWidget {
   }
 }
 
-class MaintenanceProcedures extends StatefulWidget {
-  const MaintenanceProcedures({super.key});
-
-  @override
-  _MaintenanceProceduresState createState() => _MaintenanceProceduresState();
-}
-
-class _MaintenanceProceduresState extends State<MaintenanceProcedures> {
-  static const  asset ='assets/Procedures.pdf';
-  late PDFDocument document;
-  bool _isLoading = true;
-
-  loadDocument() async {
-    document = await PDFDocument.fromAsset(asset);
-    setState(() => _isLoading = false);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    loadDocument();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Factory Maintenance Procedures'),
-      ),
-      body: Center(child:
-      _isLoading ? const Center(child: CircularProgressIndicator())
-          : PDFViewer(
-        document: document, scrollDirection: Axis.vertical, lazyLoad: false,)
-      ),
-    );
-  }
-}
 
 class TorqueTable extends StatelessWidget {
   @override
@@ -978,43 +907,6 @@ class LubePoints extends StatelessWidget {
   }
 }
 
-class ServiceData extends StatefulWidget {
-  const ServiceData({super.key});
-
-  @override
-  _ServiceDataState createState() => _ServiceDataState();
-}
-
-class _ServiceDataState extends State<ServiceData> {
-  static const asset ='assets/WearLimits.pdf';
-  late PDFDocument document;
-  bool _isLoading = true;
-
-  loadDocument() async {
-    document = await PDFDocument.fromAsset(asset);
-    setState(() => _isLoading = false);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    loadDocument();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Engine Data & Wear Limits'),
-      ),
-      body: Center(child:
-      _isLoading ? const Center(child: CircularProgressIndicator())
-          : PDFViewer(
-        document: document, scrollDirection: Axis.vertical, lazyLoad: false,)
-      ),
-    );
-  }
-}
 
 class CrossRef extends StatelessWidget {
   const CrossRef({super.key});
