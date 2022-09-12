@@ -432,6 +432,12 @@ class MachineSpecs extends StatelessWidget {
                     ),
                     TableRow(
                         children: <Widget>[
+                          TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: EdgeInsets.all(4.0), child: Text('Resistor Cap')))),
+                          TableCell(child: Align(alignment: Alignment.centerRight, child: Padding( padding: EdgeInsets.all(4.0), child: Text('NGK VD05FP'))))
+                        ]
+                    ),
+                    TableRow(
+                        children: <Widget>[
                           TableCell(child: Align(alignment: Alignment.centerLeft, child: Padding( padding: EdgeInsets.all(4.0), child: Text('Spark Plug')))),
                           TableCell(child: Align(alignment: Alignment.centerRight, child: Padding( padding: EdgeInsets.all(4.0), child: Text('NGK CR10E\nDenso U31ESR-N'))))
                         ]
