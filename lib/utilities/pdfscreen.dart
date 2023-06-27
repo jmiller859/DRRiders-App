@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
+import 'package:pdfx/pdfx.dart';
 
 class PDFLaunch extends StatefulWidget {
   final int index;
@@ -13,30 +13,20 @@ class PDFLaunch extends StatefulWidget {
 class _PDFLaunch extends State<PDFLaunch> {
   static final asset =['assets/FCRsetup.pdf', 'assets/FCRInstall.pdf','assets/TM40.pdf','assets/MaintenanceSchedule.pdf','assets/Procedures.pdf',
       'assets/WearLimits.pdf','assets/ExplodedViews.pdf','assets/LubeSystem.pdf','assets/ElectricalSystem.pdf','assets/WCHRouting.pdf'];
-  late PDFDocument document;
-  bool _isLoading = true;
-
-  loadDocument() async {
-    document = await PDFDocument.fromAsset(asset[widget.index]);
-    setState(() => _isLoading = false);
-  }
 
   @override
   void initState() {
     super.initState();
-    loadDocument();
   }
 
   @override
   Widget build(BuildContext context) {
+    final pdfPinchController = PdfControllerPinch(document: PdfDocument.openAsset(asset[widget.index]));
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(child:
-      _isLoading ? const Center(child: CircularProgressIndicator())
-          : PDFViewer(
-        document: document, scrollDirection: Axis.vertical, lazyLoad: false,) //Large file
+      body: PdfViewPinch(controller: pdfPinchController,
       ),
     );
   }
